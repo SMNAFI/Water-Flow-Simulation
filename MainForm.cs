@@ -29,7 +29,10 @@ namespace Water_Flow_Simulation
             lines.Add(new Line(600, 500));
             foreach (Line line in lines)
             {
-                this.Controls.Add(line.pb);
+                foreach(var pb in line.pbs)
+                {
+                    this.Controls.Add(pb);
+                }
             }
         }
 
@@ -37,11 +40,33 @@ namespace Water_Flow_Simulation
         {
             foreach (Line line in lines)
             {
-                var loc = line.points[line.i % line.points.Count];
-                loc.X -= 8;
-                loc.Y -= 8;
-                line.pb.Location = loc;
-                line.i++;
+                for(int i = 0; i < 3; i++)
+                {
+                    if(i == 0)
+                    {
+                        var loc = line.points[line.i % line.points.Count];
+                        loc.X -= 8;
+                        loc.Y -= 8;
+                        line.pbs[i].Location = loc;
+                        line.i++;
+                    }
+                    else if(i == 1)
+                    {
+                        var loc = line.points[line.j % line.points.Count];
+                        loc.X -= 8;
+                        loc.Y -= 8;
+                        line.pbs[i].Location = loc;
+                        line.j += 2;
+                    }
+                    else
+                    {
+                        var loc = line.points[line.k % line.points.Count];
+                        loc.X -= 8;
+                        loc.Y -= 8;
+                        line.pbs[i].Location = loc;
+                        line.k += 3;
+                    }
+                }
             }
         }
 

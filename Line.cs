@@ -12,19 +12,26 @@ namespace Water_Flow_Simulation
     {
         public List<Point> points;
         public int i;
-        public PictureBox pb;
+        public int j;
+        public int k;
+        public List<PictureBox> pbs;
         public Line(int x, int y)
         {
             var line = new GenerateLine(x, y);
             this.points = new List<Point>(line.GetPoints);
-            i = 0;
+            pbs = new List<PictureBox>();
+            i = 0; j = 0; k = 0;
 
-            pb = new PictureBox();
-            pb.BackColor = Color.Transparent;
-            pb.Image = Properties.Resources.WaterDrop;
-            pb.Location = new Point(x, y); 
-            pb.Size = new Size(16, 16);
-            pb.SizeMode = PictureBoxSizeMode.Zoom;
+            for (int i = 0; i < 3; i++)
+            {
+                var pb = new PictureBox();
+                pb.BackColor = Color.Transparent;
+                pb.Image = Properties.Resources.WaterDrop;
+                pb.Location = new Point(x, y);
+                pb.Size = new Size(16, 16);
+                pb.SizeMode = PictureBoxSizeMode.Zoom;
+                pbs.Add(pb);
+            }
         }
     }
 }
